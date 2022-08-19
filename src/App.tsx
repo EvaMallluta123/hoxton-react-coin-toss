@@ -1,57 +1,33 @@
-import { useState } from 'react'
-import './App.css'
-type State= {
-side: string;
-flipping: boolean;
-totalCount: number;
-totalTail: number;
-totalHead: number;}
+import { useState } from "react";
+import "./App.css";
+
 function App() {
-const [state, setState ]=useState<State[]>(
-  [{
-    side: "monedhë",
-    flipping: false,
-    totalCount: 0,
-     totalTail: 0, 
-     totalHead: 0 
+  const [face, setFace] = useState("tails");
+  const [headCount, setHeadCount] = useState(0);
+  const [tailCount, setTailCount] = useState(0);
+  function FlipCoin() {
+    const newFace = Math.random() > 0.5 ? "heads" : "tails";
+    if(newFace==="heads")setHeadCount(headCount+1)
+    if(newFace==="tails")setTailCount(tailCount+1)
 
+    setFace(newFace);
   }
-  ]
-)
-function Flipping(){
-   
-}
-
+  function Reset(){
+    setHeadCount(0)
+    setTailCount(0)
+  }
   return (
     <div className="App">
-      {state.map( index=>(
-      <form onClick={function Flip(){
-        index.totalCount++
-        let oneOrZero = Math.random();
-        if(oneOrZero<0.5){
-          oneOrZero=0
-          setState({ side: "head" });
-      index.totalHead++
-        }
-        else {
-          oneOrZero = 1;
-          setState({ side: "tail" });
-          index.totalTail++;
-        }
-        setState({ flipping: true });
-        setTimeout(() => setState({ flipping: false }), 1000);
-      }
-      }>
-     <h1>Hidh Monedhën</h1>
-     <img src='src\img\kokë.png'/>
-     <p>kokë</p>
-     <img src='src\img\pil.png'/>
-     <p> pil</p>
-     <button>Hidh</button>
-     </form>
-      ))}
-          </div>
-  )
+      <h1>{face}</h1>
+      <h2>HeadCount:{headCount}</h2>
+      <h2>TailCount:{tailCount}</h2>
+
+      <button onClick={FlipCoin}>Flip</button>
+      <button onClick={Reset}>Reset</button>
+
+      <img src="" alt="" />
+    </div>
+  );
 }
 
-export default App
+export default App;
