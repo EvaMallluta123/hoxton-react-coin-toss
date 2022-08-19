@@ -18,7 +18,7 @@ function App() {
   }
   return (
     <div className="App">
-      <h1>{face}</h1>
+     <img src={face==="tails"? "src/img/pil.png": "src/img/kokë.png"}/>
       <h2>HeadCount:{headCount}</h2>
       <h2>TailCount:{tailCount}</h2>
 
